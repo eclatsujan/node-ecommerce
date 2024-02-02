@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="https://kit.fontawesome.com/10b2fd9b1a.js" crossorigin="anonymous"></script>
+    <title>Online Furniture</title>
+  </head>
+  <body>
+    <div class="notification" id="notification"></div>
+    <!-- Navigation Bar -->
+    <nav class="primary-nav">
+      <div class="nav-logo">
+        <a href="/">Online Furniture</a>
+      </div>
+      <div class="search-bar">
+        <form action="/shop" method="GET">
+          <input type="text" id="search-input" name="s" value="{{search}}" placeholder="Search..." />
+        </form>
+      </div>
+      <div class="nav-buttons">
+        {% if (user) %}
+        <a href="/dashboard" class="btn">Dashboard</a>
+        {% else %}
+        <a href="/login" class="btn">Sign</a>
+        {% endif %}
+        <a href="/cart" class="btn">Cart <span id="mini-cart">({{cart.length}})</span></a>
+      </div>
+    </nav>
+
+    <!-- Secondary Navigation Bar -->
+    <nav class="secondary-nav">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/shop">Shop</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    {% if (title) %}
+    <h1 class="contact-heading">{{ title }}</h1>
+    {% endif %}
+
+    <div class="main-container">{% block content %} {% endblock %}</div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h3>Learn</h3>
+          <ul>
+            <li><a href="/about">About Online Furniture</a></li>
+            <li><a href="/shop">Shop</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Furniture</h3>
+          <ul>
+            <li><a href="/shop">Bed</a></li>
+            <li><a href="/shop">Table</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Follow Us</h3>
+          <a href="https://twitter.com/"><i class="fab fa-twitter-square" style="font-size: 38px"></i></a>
+          <a href="https://www.facebook.com//"><i class="fab fa-facebook-square" style="font-size: 38px"></i></a>
+          <a href="https://www.instagram.com//?hl=en"><i class="fab fa-instagram" style="font-size: 38px"></i></a>
+        </div>
+      </div>
+      <div class="main-footer">
+        <p>&copy; Online Furniture 2023</p>
+      </div>
+    </footer>
+    {% block scripts %} {% endblock %}
+  </body>
+</html>

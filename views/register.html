@@ -1,0 +1,92 @@
+{% extends "layout/master.html" %} {% block content %}
+<div class="login-container">
+  <h2>Register</h2>
+  {% if register and register.title !== undefined %}
+  <div class="error">
+    <p>{{ register.title }}</p>
+  </div>
+  {% endif %}
+  <form class="register-form" method="POST" action="/register">
+    <div {% if register and register.username.length!="0" %} class="input-error" {% endif %}>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" value="{{username}}" required />
+      <div class="errors">
+        {% if register and register.username.length > 0 %}
+        <ul>
+          {% for error in register.username %}
+          <li>{{error}}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+    <div {% if register and register.email.length !="0" %} class="input-error" {% endif %}>
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" value="{{email}}" required />
+      <div class="errors">
+        {% if register and register.email.length > 0 %}
+        <ul>
+          {% for error in register.email %}
+          <li>{{error}}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+    <div {% if register and register.firstName.length !="0" %} class="input-error" {% endif %}>
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" value="{{firstName}}" required />
+      <div class="errors">
+        {% if register and register.firstName.length > 0 %}
+        <ul>
+          {% for error in register.firstName %}
+          <li>{{error}}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+    <div {% if register and register.lastName.length !="0" %} class="input-error" {% endif %}>
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName" value="{{lastName}}" required />
+      <div class="errors">
+        {% if register and register.lastName.length > 0 %}
+        <ul>
+          {% for error in register.lastName %}
+          <li>{{error}}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+    <div {% if register and register.password.length !="0" %} class="input-error" {% endif %}>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required />
+      <div class="errors">
+        {% if register and register.password.length > 0 %}
+        <ul>
+          {% for error in register.password %}
+          <li>{{error}}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+    <div {% if register and register.confirm_password.length !="0" %} class="input-error" {% endif %}>
+      <label for="confirm_password">Confirm Password:</label>
+      <input type="password" id="confirm_password" name="confirmPassword" required />
+      <div class="errors">
+        {% if register and register.confirm_password.length > 0 %}
+        <ul>
+          {% for error in register.confirm_password %}
+          <li>{{error}}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+    <button type="submit">Register</button>
+    <a href="/login" type="submit">Login</a>
+  </form>
+</div>
+{% endblock %}

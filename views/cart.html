@@ -1,0 +1,62 @@
+{% extends "layout/master.html" %}
+{% block content %}
+
+    
+
+    <div class="cart-content">
+        <h2 class="cart-heading">Your Cart</h2>
+    
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Product Name</th>
+              <th>Product Image</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Total</th>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in cart %}
+              <tr>
+                <td>{{loop.index}}</td>
+                <td>{{item.name}}</td>
+                <td><img src="{{item.image}}" class="cart-image"></td>
+                <td>{{item.quantity}}</td>
+                <td>{{currency + item.price}}</td>
+                <td>{{currency + (item.quantity * item.price)}}</td>
+                <td><button data-id="{{item.id}}" class="remove-btn">Remove</button></td>
+              </tr>
+            {% endfor %}
+        </table>
+    
+        <div class="total-price">
+          <p>Total Price: <span id="totalAmount">{{currency + cartTotal}}</span></p>
+        </div>
+        <a href="/shop" class="checkout-button">Countine Shopping</a>
+        <a href="/checkout" class="checkout-button">Checkout</a>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        const tbody = document.querySelector("tbody");
+        tbody.addEventListener("click",(event)=>{
+          if(!event.srcElement.classList.contains("remove-btn")){
+            return;
+          } 
+          try{
+            removeFromCart(event.srcElement.dataset.id,(result)=>{
+              event.srcElement.closest("tr").remove();
+              let totalAmount = document.querySelector("#totalAmount");
+              totalAmount.textContent = '{{currency}}'+result.cartTotal
+            });
+            
+          }catch(e){
+
+          }
+        })
+    </script>
+    <script src="/js/cart.js" async></script>
+{% endblock %}

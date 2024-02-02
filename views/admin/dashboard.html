@@ -1,0 +1,21 @@
+{% extends "layout/admin.html" %} {% set dashboardClass = 'account' %} {% block panel %}
+<h2>Account Information</h2>
+<div class="panel-body">
+  <div class="">
+    <h3>First Name:</h3>
+    <p>{{user.firstName}}</p>
+  </div>
+  <div class="">
+    <h3>Last Name:</h3>
+    <p>{{user.lastName}}</p>
+  </div>
+  <div class="">
+    <h3>Email:</h3>
+    <p>{{user.email}}</p>
+  </div>
+  <div class="">
+    <h3>Username:</h3>
+    <p>{{user.username}}</p>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "layout/master.html" %} {% block content %}
+<!-- Banner Image -->
+<div class="banner">
+  <h1>Welcome to our online Furniture Shop</h1>
+  <p>Get the best furniture from here</p>
+  <a href="/shop" class="shop-button">Shop Now</a>
+</div>
+
+<!-- About Us Section -->
+<h1 style="text-align: center; margin-top: 15px">Popular Products</h1>
+<div class="shop-grid">
+  {% if products and products.length > 0 %} {% for item in products %}
+  <!-- Jersey 1 -->
+  <div class="product">
+    <div class="product-image">
+      <img src="{{item.image}}" alt="Jersey 1" />
+    </div>
+    <div class="product-details">
+      <h2>{{item.name}}</h2>
+      <p>Price: {{ currency + item.price}}</p>
+      <button href="/cart" onclick="addToCart('{{ item.id }}')" class="add-to-cart">Add to Cart</button>
+    </div>
+  </div>
+  {% endfor %} {% endif %} {% endblock %}
+</div>
+{% block scripts %}
+<script src="/js/cart.js" async></script>
+{% endblock %}

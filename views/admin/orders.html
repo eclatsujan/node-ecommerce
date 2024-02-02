@@ -1,0 +1,27 @@
+{% extends "layout/admin.html" %} {% block panel %}
+<h2>My Orders</h2>
+<div class="panel-body">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Order Date</th>
+        <th>Order Status</th>
+        <th>Order Total</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in orders %}
+      <tr>
+        <td>{{ order.uuid }}</td>
+        <td>{{ order.createdAt }}</td>
+        <td>{{ order.status }}</td>
+        <td>{{ order.total }}</td>
+        <td><a href="/order/{{ order.id }}">View</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

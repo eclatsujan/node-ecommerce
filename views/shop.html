@@ -1,0 +1,25 @@
+{% extends "layout/master.html" %} {% block content %} {% if products and products.length > 0 %}
+
+<div class="shop-grid">
+  {% for item in products %}
+  <!-- Jersey 1 -->
+  <div class="product">
+    <div class="product-image">
+      <img src="{{item.image}}" alt="Jersey 1" />
+    </div>
+    <div class="product-details">
+      <h2>{{item.name}}</h2>
+      <p>Price: {{ currency + item.price}}</p>
+      <button href="/cart" onclick="addToCart('{{ item.id }}')" class="add-to-cart">Add to Cart</button>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<section class="product-404">
+  <h2 style="text-align: center; margin-top: 15px">No products found with {{search}} keyword.</h2>
+  <a href="/shop">View All Products</a>
+</section>
+{% endif %} {% endblock %} {% block scripts %}
+<script src="/js/cart.js" async></script>
+{% endblock %}

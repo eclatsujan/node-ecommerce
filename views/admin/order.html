@@ -1,0 +1,24 @@
+{% extends "layout/admin.html" %} {% block panel %}
+<h3>Order Details</h3>
+<p>Order UUID: {{ order.uuid }}</p>
+<p>Total: ${{ order.total }}</p>
+<h4>Order List:</h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Product Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in order.OrderItems %}
+    <tr>
+      <td>{{ item.Product.name }}</td>
+      <td>{{ item.Product.price }}</td>
+      <td>{{ item.quantity }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
